@@ -1,24 +1,18 @@
 import { BookOpen, Database, Search, Tags } from 'lucide-react'
 
-const previewNotes = [
-  {
-    title: 'Ideas para portfolio',
-    category: 'Trabajo',
-    excerpt: 'Organizar mejoras de README, capturas y deploy de cada proyecto.',
-  },
-  {
-    title: 'Modelo SQL de notas',
-    category: 'Estudio',
-    excerpt: 'Definir tablas para notas, categorias, etiquetas y relaciones.',
-  },
-  {
-    title: 'Recordatorio semanal',
-    category: 'Personal',
-    excerpt: 'Revisar pendientes, archivar notas antiguas y priorizar tareas.',
-  },
-]
+import { demoNotes } from './data/demoNotes'
+import type { Note } from './types/note'
+import {
+  getNoteCategories,
+  getNoteSummary,
+  getNoteTags,
+} from './utils/noteUtils'
 
 function App() {
+  const summary = getNoteSummary(demoNotes)
+  const categories = getNoteCategories(demoNotes)
+  const tags = getNoteTags(demoNotes)
+
   return (
     <div className="min-h-screen bg-stone-50 text-stone-950">
       <header className="border-b border-stone-200 bg-white">
@@ -61,28 +55,25 @@ function App() {
             aria-label="Resumen tecnico"
             className="grid gap-3 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:grid-cols-2"
           >
-            <SummaryCard icon={BookOpen} label="CRUD local" />
-            <SummaryCard icon={Search} label="Busqueda" />
-            <SummaryCard icon={Tags} label="Etiquetas" />
-            <SummaryCard icon={Database} label="Modelo SQL" />
+            <SummaryCard
+              icon={BookOpen}
+              label="Notas activas"
+              value={summary.active}
+            />
+            <SummaryCard
+              icon={Search}
+              label="Favoritas"
+              value={summary.favorites}
+            />
+            <SummaryCard icon={Tags} label="Etiquetas" value={tags.length} />
+            <SummaryCard icon={Database} label="Categorias" value={categories.length} />
           </aside>
         </section>
 
         <section className="bg-white" id="notas">
           <div className="mx-auto grid max-w-7xl gap-5 px-5 py-10 sm:px-8 lg:grid-cols-3">
-            {previewNotes.map((note) => (
-              <article
-                className="rounded-2xl border border-stone-200 bg-stone-50 p-5"
-                key={note.title}
-              >
-                <p className="text-xs font-bold uppercase text-amber-800">
-                  {note.category}
-                </p>
-                <h2 className="mt-3 text-xl font-bold">{note.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-stone-600">
-                  {note.excerpt}
-                </p>
-              </article>
+            {demoNotes.map((note) => (
+              <NoteCard key={note.id} note={note} />
             ))}
           </div>
         </section>
@@ -94,13 +85,49 @@ function App() {
 type SummaryCardProps = {
   icon: typeof BookOpen
   label: string
+  value: number
 }
 
-function SummaryCard({ icon: Icon, label }: SummaryCardProps) {
+function SummaryCard({ icon: Icon, label, value }: SummaryCardProps) {
   return (
     <article className="rounded-xl border border-stone-200 bg-stone-50 p-4">
       <Icon aria-hidden="true" className="text-amber-700" size={22} />
-      <p className="mt-4 font-bold">{label}</p>
+      <p className="mt-4 text-3xl font-bold">{value}</p>
+      <p className="mt-1 text-sm font-semibold text-stone-600">{label}</p>
+    </article>
+  )
+}
+
+function NoteCard({ note }: { note: Note }) {
+  return (
+    <article className="rounded-2xl border border-stone-200 bg-stone-50 p-5">
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase text-amber-900">
+          {note.category}
+        </p>
+        {note.isFavorite && (
+          <p className="rounded-full bg-stone-950 px-3 py-1 text-xs font-bold uppercase text-white">
+            Favorita
+          </p>
+        )}
+        {note.isArchived && (
+          <p className="rounded-full bg-stone-200 px-3 py-1 text-xs font-bold uppercase text-stone-700">
+            Archivada
+          </p>
+        )}
+      </div>
+      <h2 className="mt-4 text-xl font-bold">{note.title}</h2>
+      <p className="mt-3 text-sm leading-6 text-stone-600">{note.content}</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {note.tags.map((tag) => (
+          <span
+            className="rounded-full border border-stone-200 bg-white px-2 py-1 text-xs font-semibold text-stone-600"
+            key={tag}
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
     </article>
   )
 }
