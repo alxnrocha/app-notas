@@ -1,27 +1,35 @@
 import { Plus } from 'lucide-react'
-import { useState } from 'react'
-import type { NoteInput } from '../../types/note'
+import type { Note, NoteInput } from '../../types/note'
 import { NoteForm } from './NoteForm'
 
 type NoteFormPanelProps = {
+  isOpen: boolean
+  editingNote: Note | null
+  onOpen: () => void
+  onClose: () => void
   onSave: (note: NoteInput) => void
 }
 
-export function NoteFormPanel({ onSave }: NoteFormPanelProps) {
-  const [isOpen, setIsOpen] = useState(false)
-
+export function NoteFormPanel({
+  isOpen,
+  editingNote,
+  onOpen,
+  onClose,
+  onSave,
+}: NoteFormPanelProps) {
   if (isOpen) {
     return (
       <section className="mb-10 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
         <div className="mb-6 border-b border-stone-100 pb-4">
-          <h2 className="text-xl font-bold">Crear nueva nota</h2>
+          <h2 className="text-xl font-bold">
+            {editingNote ? 'Editar nota' : 'Crear nueva nota'}
+          </h2>
         </div>
         <NoteForm
-          onCancel={() => setIsOpen(false)}
-          onSave={(note) => {
-            onSave(note)
-            setIsOpen(false)
-          }}
+          key={editingNote?.id ?? 'new'}
+          initialData={editingNote ?? undefined}
+          onCancel={onClose}
+          onSave={onSave}
         />
       </section>
     )
@@ -38,7 +46,7 @@ export function NoteFormPanel({ onSave }: NoteFormPanelProps) {
         </div>
         <button
           className="inline-flex items-center justify-center gap-2 rounded-xl bg-stone-950 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-stone-800"
-          onClick={() => setIsOpen(true)}
+          onClick={onOpen}
           type="button"
         >
           <Plus size={18} strokeWidth={2.5} />
