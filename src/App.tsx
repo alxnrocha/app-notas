@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Header } from './components/layout/Header'
 import { HeroSummary } from './components/layout/HeroSummary'
-import { NoteFiltersPlaceholder } from './components/notes/NoteFiltersPlaceholder'
+import { NoteFilters } from './components/notes/NoteFilters'
 import { NoteFormPanel } from './components/notes/NoteFormPanel'
 import { NoteList } from './components/notes/NoteList'
 import { demoNotes } from './data/demoNotes'
-import type { Note, NoteInput } from './types/note'
+import type { Note, NoteFilters as NoteFiltersType, NoteInput } from './types/note'
 import {
   createNote,
+  filterNotes,
   getNoteCategories,
   getNoteSummary,
   getNoteTags,
@@ -21,7 +22,15 @@ function App() {
   const [notes, setNotes] = useState<Note[]>(demoNotes)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
+  const [filters, setFilters] = useState<NoteFiltersType>({
+    query: '',
+    category: 'all',
+    tag: 'all',
+    status: 'all',
+    favorite: 'all',
+  })
 
+  const filteredNotes = filterNotes(notes, filters)
   const summary = getNoteSummary(notes)
   const categories = getNoteCategories(notes)
   const tags = getNoteTags(notes)
@@ -85,9 +94,13 @@ function App() {
               onOpen={() => setIsFormOpen(true)}
               onSave={handleSaveNote}
             />
-            <NoteFiltersPlaceholder />
+            <NoteFilters 
+              filters={filters} 
+              onFiltersChange={setFilters} 
+              categories={categories} 
+            />
             <NoteList
-              notes={notes}
+              notes={filteredNotes}
               onDelete={handleDeleteNote}
               onEdit={handleEditNote}
               onToggleArchive={handleToggleArchive}
