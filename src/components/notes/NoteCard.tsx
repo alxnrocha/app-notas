@@ -53,7 +53,7 @@ export function NoteCard({
       <div className="mt-6 flex items-center justify-end gap-2 border-t border-stone-200 pt-4 opacity-100 sm:opacity-0 sm:transition-opacity sm:group-hover:opacity-100">
         <button
           aria-label="Editar"
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-stone-400 transition-colors hover:bg-stone-200 hover:text-stone-950"
+          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-stone-400 transition-colors hover:bg-stone-200 hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-1"
           onClick={() => onEdit(note)}
           title="Editar"
           type="button"
@@ -62,7 +62,7 @@ export function NoteCard({
         </button>
         <button
           aria-label={note.isFavorite ? 'Quitar favorita' : 'Marcar favorita'}
-          className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${note.isFavorite ? 'text-amber-500 hover:bg-amber-100 hover:text-amber-600' : 'text-stone-400 hover:bg-stone-200 hover:text-stone-950'}`}
+          className={`flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-1 ${note.isFavorite ? 'text-amber-500 hover:bg-amber-100 hover:text-amber-600' : 'text-stone-400 hover:bg-stone-200 hover:text-stone-950'}`}
           onClick={() => onToggleFavorite(note.id)}
           title="Favorita"
           type="button"
@@ -71,7 +71,7 @@ export function NoteCard({
         </button>
         <button
           aria-label={note.isArchived ? 'Desarchivar' : 'Archivar'}
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-stone-400 transition-colors hover:bg-stone-200 hover:text-stone-950"
+          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-stone-400 transition-colors hover:bg-stone-200 hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-1"
           onClick={() => onToggleArchive(note.id)}
           title={note.isArchived ? 'Desarchivar' : 'Archivar'}
           type="button"
@@ -80,7 +80,7 @@ export function NoteCard({
         </button>
         <button
           aria-label="Eliminar"
-          className="flex h-9 w-9 items-center justify-center rounded-xl text-stone-400 transition-colors hover:bg-red-100 hover:text-red-600"
+          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-stone-400 transition-colors hover:bg-red-100 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-1"
           onClick={() => onDelete(note.id)}
           title="Eliminar"
           type="button"

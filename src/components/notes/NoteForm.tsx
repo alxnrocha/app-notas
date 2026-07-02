@@ -102,7 +102,7 @@ export function NoteForm({ initialData, onSave, onCancel }: NoteFormProps) {
 
       <div className="flex items-center gap-3">
         <button
-          className={`inline-flex items-center justify-center rounded-xl border p-2.5 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500/20 ${isFavorite ? 'border-amber-200 bg-amber-100 text-amber-600' : 'border-stone-200 bg-stone-50 text-stone-400 hover:bg-stone-100'}`}
+          className={`inline-flex items-center justify-center rounded-xl border p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${isFavorite ? 'border-amber-200 bg-amber-100 text-amber-600' : 'border-stone-200 bg-stone-50 text-stone-400 hover:bg-stone-100'}`}
           onClick={() => setIsFavorite(!isFavorite)}
           type="button"
           aria-pressed={isFavorite}
@@ -117,14 +117,14 @@ export function NoteForm({ initialData, onSave, onCancel }: NoteFormProps) {
 
       <div className="mt-4 flex items-center justify-end gap-3 border-t border-stone-100 pt-6">
         <button
-          className="rounded-xl px-5 py-2.5 text-sm font-bold text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950"
+          className="rounded-xl px-5 py-2.5 text-sm font-bold text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2"
           onClick={onCancel}
           type="button"
         >
           Cancelar
         </button>
         <button
-          className="rounded-xl bg-amber-400 px-6 py-2.5 text-sm font-bold text-amber-950 transition-colors hover:bg-amber-500"
+          className="rounded-xl bg-amber-400 px-6 py-2.5 text-sm font-bold text-amber-950 transition-colors hover:bg-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
           type="submit"
         >
           Guardar nota
