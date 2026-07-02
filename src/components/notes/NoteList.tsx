@@ -28,7 +28,7 @@ export function NoteList({
   }
 
   return (
-    <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {notes.map((note) => (
         <NoteCard
           key={note.id}

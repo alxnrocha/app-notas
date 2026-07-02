@@ -37,8 +37,8 @@ export function NoteCard({
   const bgClass = getCategoryColor(note.category)
 
   return (
-    <article className={`group flex flex-col justify-between rounded-3xl ${bgClass} p-6 shadow-md transition-all hover:shadow-lg hover:-translate-y-1 break-inside-avoid text-white`}>
-      <div>
+    <article className={`group flex flex-col justify-between h-[360px] rounded-3xl ${bgClass} p-6 shadow-md transition-all hover:shadow-lg hover:-translate-y-1 text-white`}>
+      <div className="flex-1 overflow-hidden flex flex-col">
         <div className="flex flex-wrap items-center gap-2">
           <p className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
             {note.category}
@@ -54,14 +54,21 @@ export function NoteCard({
             </p>
           )}
         </div>
-        <h3 className="mt-4 text-2xl font-bold tracking-tight text-white drop-shadow-sm">{note.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-white/90 line-clamp-4">
-          {note.content}
-        </p>
-        <div className="mt-5 flex flex-wrap gap-2">
+        <h3 className="mt-4 text-2xl font-bold tracking-tight text-white drop-shadow-sm line-clamp-2">{note.title}</h3>
+        <div className="mt-3 flex-1 overflow-hidden">
+          <p className="text-sm leading-relaxed text-white/90 line-clamp-3">
+            {note.content}
+          </p>
+          {(note.content.length > 100 || note.tags.length > 3) && (
+            <span className="text-xs font-bold text-white/70 mt-1 block cursor-pointer hover:text-white transition-colors">
+              Ler mais...
+            </span>
+          )}
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2 overflow-hidden h-[28px]">
           {note.tags.map((tag) => (
             <span
-              className="rounded-full bg-black/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm"
+              className="rounded-full bg-black/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm whitespace-nowrap"
               key={tag}
             >
               #{tag}
@@ -70,10 +77,10 @@ export function NoteCard({
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-2 border-t border-white/20 pt-4 opacity-100 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
+      <div className="mt-6 flex flex-shrink-0 items-center justify-end gap-2 border-t border-white/20 pt-4 opacity-100 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
         <button
           aria-label="Editar"
-          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 transition-colors hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
+          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 transition-colors cursor-pointer hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
           onClick={() => onEdit(note)}
           title="Editar"
           type="button"
@@ -82,7 +89,7 @@ export function NoteCard({
         </button>
         <button
           aria-label={note.isFavorite ? 'Quitar favorita' : 'Marcar favorita'}
-          className={`flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent ${note.isFavorite ? 'text-amber-300 hover:bg-white/20 hover:text-amber-200' : 'text-white/70 hover:bg-white/20 hover:text-white'}`}
+          className={`flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent ${note.isFavorite ? 'text-amber-300 hover:bg-white/20 hover:text-amber-200' : 'text-white/70 hover:bg-white/20 hover:text-white'}`}
           onClick={() => onToggleFavorite(note.id)}
           title="Favorita"
           type="button"
@@ -91,7 +98,7 @@ export function NoteCard({
         </button>
         <button
           aria-label={note.isArchived ? 'Desarchivar' : 'Archivar'}
-          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 transition-colors hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
+          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 cursor-pointer transition-colors hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
           onClick={() => onToggleArchive(note.id)}
           title={note.isArchived ? 'Desarchivar' : 'Archivar'}
           type="button"
@@ -100,7 +107,7 @@ export function NoteCard({
         </button>
         <button
           aria-label="Eliminar"
-          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 transition-colors hover:bg-red-500/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
+          className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 cursor-pointer transition-colors hover:bg-red-500/80 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
           onClick={() => onDelete(note.id)}
           title="Eliminar"
           type="button"
