@@ -37,7 +37,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
             handleStatusToggle('all')
             if (filters.favorite !== 'all') handleFavoriteToggle()
           }}
-          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
             filters.status === 'all' && filters.favorite === 'all'
               ? 'bg-indigo-500/10 text-indigo-400'
               : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
@@ -52,7 +52,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
             handleStatusToggle('active')
             if (filters.favorite !== 'all') handleFavoriteToggle()
           }}
-          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
             filters.status === 'active' && filters.favorite === 'all'
               ? 'bg-indigo-500/10 text-indigo-400'
               : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
@@ -66,7 +66,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
           onClick={() => {
             handleFavoriteToggle()
           }}
-          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
             filters.favorite === 'favorites'
               ? 'bg-amber-500/10 text-amber-400'
               : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
@@ -81,7 +81,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
             handleStatusToggle('archived')
             if (filters.favorite !== 'all') handleFavoriteToggle()
           }}
-          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
             filters.status === 'archived' && filters.favorite === 'all'
               ? 'bg-indigo-500/10 text-indigo-400'
               : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
@@ -101,7 +101,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
           <div className="flex flex-col gap-1">
             <button
               onClick={() => handleCategoryChange('all')}
-              className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors cursor-pointer ${
                 filters.category === 'all'
                   ? 'text-indigo-400 font-medium'
                   : 'text-slate-400 hover:text-slate-200'
@@ -113,7 +113,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
               <button
                 key={cat}
                 onClick={() => handleCategoryChange(cat)}
-                className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors text-left ${
+                className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors text-left cursor-pointer ${
                   filters.category === cat
                     ? 'text-indigo-400 font-medium'
                     : 'text-slate-400 hover:text-slate-200'
@@ -135,7 +135,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
           <div className="flex flex-col gap-1">
             <button
               onClick={() => handleTagChange('all')}
-              className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors cursor-pointer ${
                 filters.tag === 'all'
                   ? 'text-indigo-400 font-medium'
                   : 'text-slate-400 hover:text-slate-200'
@@ -148,7 +148,7 @@ export function NoteFilters({ filters, onFiltersChange, categories, tags }: Note
               <button
                 key={t}
                 onClick={() => handleTagChange(t)}
-                className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors text-left ${
+                className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors text-left cursor-pointer ${
                   filters.tag === t
                     ? 'text-indigo-400 font-medium'
                     : 'text-slate-400 hover:text-slate-200'
