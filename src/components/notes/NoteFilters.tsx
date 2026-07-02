@@ -80,7 +80,7 @@ export function NoteFilters({ filters, onFiltersChange, categories }: NoteFilter
         <button
           type="button"
           onClick={() => handleStatusToggle('all')}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+          className={`rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 ${
             filters.status === 'all'
               ? 'bg-stone-800 text-white'
               : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
@@ -91,7 +91,7 @@ export function NoteFilters({ filters, onFiltersChange, categories }: NoteFilter
         <button
           type="button"
           onClick={() => handleStatusToggle('active')}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+          className={`rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 ${
             filters.status === 'active'
               ? 'bg-stone-800 text-white'
               : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
@@ -102,7 +102,7 @@ export function NoteFilters({ filters, onFiltersChange, categories }: NoteFilter
         <button
           type="button"
           onClick={() => handleStatusToggle('archived')}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+          className={`rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 ${
             filters.status === 'archived'
               ? 'bg-stone-800 text-white'
               : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
@@ -114,7 +114,7 @@ export function NoteFilters({ filters, onFiltersChange, categories }: NoteFilter
         <button
           type="button"
           onClick={handleFavoriteToggle}
-          className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+          className={`flex items-center gap-1.5 rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
             filters.favorite === 'favorites'
               ? 'bg-amber-100 text-amber-800'
               : 'bg-stone-100 text-stone-600 hover:bg-stone-200'

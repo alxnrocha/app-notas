@@ -45,7 +45,7 @@ export function NoteFormPanel({
           </p>
         </div>
         <button
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-stone-950 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-stone-800"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-stone-950 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2"
           onClick={onOpen}
           type="button"
         >
