@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Header } from './components/layout/Header'
 import { HeroSummary } from './components/layout/HeroSummary'
 import { NoteFilters } from './components/notes/NoteFilters'
@@ -18,8 +18,20 @@ import {
   toggleNoteFavorite,
 } from './utils/noteUtils'
 
+const STORAGE_KEY = 'app-notas-data'
+
 function App() {
-  const [notes, setNotes] = useState<Note[]>(demoNotes)
+  const [notes, setNotes] = useState<Note[]>(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) {
+        return JSON.parse(stored)
+      }
+    } catch (e) {
+      console.error('Error loading notes from localStorage:', e)
+    }
+    return demoNotes
+  })
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [filters, setFilters] = useState<NoteFiltersType>({
@@ -34,6 +46,10 @@ function App() {
   const summary = getNoteSummary(notes)
   const categories = getNoteCategories(notes)
   const tags = getNoteTags(notes)
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
+  }, [notes])
 
   const handleSaveNote = (input: NoteInput) => {
     if (editingNote) {
