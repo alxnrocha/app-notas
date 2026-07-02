@@ -37,8 +37,8 @@ export function NoteCard({
   const bgClass = getCategoryColor(note.category)
 
   return (
-    <article className={`group flex flex-col justify-between h-[260px] rounded-3xl ${bgClass} p-5 shadow-md transition-all hover:shadow-lg hover:-translate-y-1 text-white`}>
-      <div className="flex-1 overflow-hidden flex flex-col">
+    <article className={`group flex flex-col justify-between h-[280px] rounded-3xl ${bgClass} px-5 pt-6 pb-5 shadow-md transition-all hover:shadow-lg hover:-translate-y-1 text-white`}>
+      <div className="flex flex-col">
         <div className="flex flex-wrap items-center gap-1.5">
           <p className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
             {note.category}
@@ -54,8 +54,8 @@ export function NoteCard({
             </p>
           )}
         </div>
-        <h3 className="mt-3 text-xl font-bold tracking-tight text-white drop-shadow-sm line-clamp-1">{note.title}</h3>
-        <div className="mt-1.5 flex-1 overflow-hidden">
+        <h3 className="mt-5 text-xl font-bold tracking-tight text-white drop-shadow-sm line-clamp-1">{note.title}</h3>
+        <div className="mt-2 overflow-hidden">
           <p className="text-sm leading-snug text-white/90 line-clamp-2">
             {note.content}
           </p>
@@ -65,7 +65,7 @@ export function NoteCard({
             </span>
           )}
         </div>
-        <div className="mt-2 flex flex-wrap gap-1.5 overflow-hidden h-[24px]">
+        <div className="mt-3 flex flex-wrap gap-1.5 overflow-hidden h-[24px]">
           {note.tags.map((tag) => (
             <span
               className="rounded-full bg-black/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm whitespace-nowrap"
