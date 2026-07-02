@@ -77,7 +77,7 @@ export function NoteCard({
         </div>
       </div>
 
-      <div className="mt-4 flex flex-shrink-0 items-center justify-end gap-1.5 border-t border-white/20 pt-3 opacity-100 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
+      <div className="mt-auto pt-4 flex flex-shrink-0 items-center justify-end gap-1.5 border-t border-white/20">
         <button
           aria-label="Editar"
           className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 transition-colors cursor-pointer hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
