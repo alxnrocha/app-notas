@@ -82,11 +82,11 @@ Opción recomendada para entorno de desarrollo:
 
 ### Desktop
 
-![Vista desktop de Noteflow](./screenshots/desktop.png?v=20260702-full)
+![Vista desktop de Noteflow](./screenshots/desktop.png?v=20260702-fixed)
 
 ### Mobile
 
-![Vista mobile de Noteflow](./screenshots/mobile.png?v=20260702-full)
+![Vista mobile de Noteflow](./screenshots/mobile.png?v=20260702-fixed)
 
 ## Deploy
 
