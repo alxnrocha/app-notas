@@ -11,6 +11,14 @@ Aplicación web moderna y responsiva para gestionar notas locales, con un diseñ
 - **Persistencia Local:** Los datos se guardan automáticamente en el `localStorage` del navegador.
 - **Bonus SQL:** Carpeta `database/` con esquema, diagrama relacional (MER) e inserciones de prueba (seeds) en PostgreSQL, demostrando capacidad de arquitectura de datos.
 
+## 📸 Screenshots
+
+### Desktop
+![Vista Desktop de Noteflow](./screenshots/desktop.png)
+
+### Mobile
+![Vista Mobile de Noteflow](./screenshots/mobile.png)
+
 ## 🛠️ Tecnologías Utilizadas
 
 - **Frontend:** React 19, TypeScript, Vite
