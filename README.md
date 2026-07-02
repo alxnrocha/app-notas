@@ -1,58 +1,109 @@
 # Noteflow: Premium Notes Workspace
 
-Aplicación web moderna y responsiva para gestionar notas locales, con un diseño premium inspirado en las últimas tendencias de interfaces (Dark Mode, layout en rejilla uniforme, Glassmorphism). Además del Frontend, incluye documentación de un modelado real en SQL.
+Aplicación web moderna y responsiva para gestionar notas locales, con un diseño premium (Dark Mode Masonry) y un modelado relacional completo en SQL.
 
-## ✨ Características
+Diseñé y desarrollé este proyecto para simular un producto SaaS de productividad real. El objetivo fue construir una experiencia orientada a la eficiencia y el diseño de alta fidelidad, cuidando tanto la interfaz (UI/UX) como la estructura técnica de datos subyacente.
 
-- **Interfaz Premium:** Layout oscuro con barra lateral de navegación y sistema de tarjetas uniformes.
-- **Buscador en Tiempo Real:** Filtrado instantáneo por título, contenido y etiquetas.
-- **Gestión Completa:** Crear, editar, marcar como favorita, archivar o eliminar notas.
-- **Categorización y Etiquetas:** Asignación de categorías (con colores vibrantes autogenerados) y múltiples etiquetas (`#tags`) por nota.
-- **Persistencia Local:** Los datos se guardan automáticamente en el `localStorage` del navegador.
-- **Bonus SQL:** Carpeta `database/` con esquema, diagrama relacional (MER) e inserciones de prueba (seeds) en PostgreSQL, demostrando capacidad de arquitectura de datos.
+## Vista General
 
-## 📸 Screenshots
+Noteflow presenta un panel central de notas organizado en un layout dinámico tipo Masonry, acompañado de una barra lateral para filtros rápidos (categorías, etiquetas, favoritos). La aplicación está pensada para ser rápida, visualmente atractiva (glassmorphism, gradientes autogenerados) y completamente funcional a nivel de frontend, persistiendo los datos de manera local.
+
+## Funcionalidades
+
+- Interfaz premium en Dark Mode con efectos ambientales de luz.
+- Panel lateral interactivo con filtros por estado (Active/Archived) y favoritos.
+- Layout dinámico de cuadrícula (CSS Grid Masonry style) para las tarjetas de notas.
+- Buscador en tiempo real integrado en la barra de navegación superior.
+- Categorización automática con colores de gradiente generados por hash.
+- Gestión completa de notas: creación, edición, archivado y eliminación.
+- Múltiples etiquetas (`#tags`) por nota.
+- Persistencia automática de datos usando `localStorage`.
+- Diseño responsive para desktop, tablet y móvil.
+
+## Tecnologías
+
+- React 19
+- TypeScript
+- Tailwind CSS 4.0
+- Lucide React (Iconos)
+- Vite
+- Git & GitHub
+
+## Decisiones de Implementación
+
+El proyecto está construido utilizando React para aprovechar la reactividad del estado de UI al manipular las listas y filtros de notas. Elegí Tailwind CSS para implementar rápidamente los tokens de diseño avanzado (como `backdrop-blur`, gradientes personalizados y tipografía utilitaria) sin abandonar el archivo de componentes.
+
+A diferencia de una SPA estándar, se ha implementado la persistencia de datos local (`localStorage`) mediante un `useEffect` sincronizado con el estado principal de React, simulando el comportamiento de un backend real.
+
+Adicionalmente, he diseñado la capa de base de datos relacional (SQL) que este frontend consumiría en un entorno de producción, demostrando así visión full-stack. El esquema SQL está separado en la carpeta `database/`.
+
+## Accesibilidad
+
+Implementé varias mejoras básicas de accesibilidad adaptadas a una SPA interactiva:
+
+- Navegación lateral con contrastes controlados (AA).
+- Uso de `aria-label` en botones sin texto explícito (íconos de acción en las tarjetas).
+- Estructura semántica con `<aside>`, `<header>`, `<main>` y `<article>` para las notas.
+- Focos visibles en los botones interactivos (hover y focus states en tarjetas).
+- Estados interactivos transparentes para reducir carga cognitiva.
+
+## Estructura
+
+```txt
+06-app-notas/
+├── README.md
+├── index.html
+├── database/
+│   ├── schema.sql
+│   ├── seed.sql
+│   └── README.md
+├── screenshots/
+│   ├── desktop.png
+│   └── mobile.png
+└── src/
+    ├── components/
+    ├── data/
+    ├── types/
+    ├── utils/
+    ├── App.tsx
+    └── main.tsx
+```
+
+## Cómo Ejecutarlo
+
+Opción recomendada para entorno de desarrollo:
+
+1. Clonar el repositorio.
+2. Abrir la carpeta del proyecto en la terminal.
+3. Instalar las dependencias con `npm install`.
+4. Ejecutar el servidor de desarrollo con `npm run dev`.
+
+## Screenshots
 
 ### Desktop
-![Vista Desktop de Noteflow](./screenshots/desktop.png)
+
+![Vista desktop de Noteflow](./screenshots/desktop.png)
 
 ### Mobile
-![Vista Mobile de Noteflow](./screenshots/mobile.png)
 
-## 🛠️ Tecnologías Utilizadas
+![Vista mobile de Noteflow](./screenshots/mobile.png)
 
-- **Frontend:** React 19, TypeScript, Vite
-- **Estilos:** Tailwind CSS 4.0, Lucide React (Íconos)
-- **Base de Datos (Concepto):** PostgreSQL (Documentación)
-- **Deploy:** GitHub Pages (CI/CD Automático)
+## Deploy
 
-## 🚀 Despliegue (Deploy)
+Proyecto configurado para publicación automática vía GitHub Actions:
 
-Este proyecto cuenta con integración continua a través de GitHub Actions. Cada vez que se hace push a la rama `main`, la aplicación se compila y se despliega automáticamente en GitHub Pages.
+[https://alxnrocha.github.io/app-notas/](https://alxnrocha.github.io/app-notas/)
 
-🔗 **[Visitar la Aplicación en Vivo](https://alxnrocha.github.io/app-notas/)**
+## Documentación Técnica
 
-## 📦 Instalación Local
+El detalle del modelado de base de datos SQL relacional (Diseño backend conceptual) está documentado en:
 
-1. Clona el repositorio:
-```bash
-git clone https://github.com/alxnrocha/app-notas.git
-```
+[database/README.md](./database/README.md)
 
-2. Instala las dependencias:
-```bash
-npm install
-```
+## Estado
 
-3. Inicia el servidor de desarrollo:
-```bash
-npm run dev
-```
+Aplicación de notas finalizada y publicada como proyecto de portfolio de nivel intermediario-avanzado.
 
-## 🗄️ Modelado de Datos (SQL)
+## Autor
 
-Aunque la aplicación frontend usa `localStorage` para facilitar las pruebas en vivo sin necesidad de un backend, el proyecto incluye un diseño completo de base de datos relacional para escalar a un producto real:
-
-- `database/schema.sql`: Definición de tablas (`users`, `notes`, `categories`, `tags`) y sus relaciones.
-- `database/seed.sql`: Datos de prueba pre-cargados.
-- `database/README.md`: Diagrama Entidad-Relación (Mermaid).
+Alexandre Rocha
