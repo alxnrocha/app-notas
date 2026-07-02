@@ -1,4 +1,4 @@
-# Proyecto 06: App de Notas (Noteflow)
+# Noteflow: Premium Notes Workspace
 
 Aplicación web moderna y responsiva para gestionar notas locales, con un diseño premium inspirado en las últimas tendencias de interfaces (Dark Mode, layout en rejilla uniforme, Glassmorphism). Además del Frontend, incluye documentación de un modelado real en SQL.
 

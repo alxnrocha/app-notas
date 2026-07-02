@@ -9,7 +9,7 @@ export function HeroSummary({ summary, totalTags, totalCategories }: HeroSummary
     <section>
       <div className="mb-6">
         <h1 className="text-xl font-bold tracking-tight text-white mb-2">
-          Project 06
+          Noteflow Workspace
         </h1>
         <p className="text-sm leading-relaxed text-slate-400">
           Capture ideas, organize notes and prepare a real SQL database.
