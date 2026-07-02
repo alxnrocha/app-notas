@@ -33,6 +33,7 @@ function App() {
     return demoNotes
   })
   const [isFormOpen, setIsFormOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [filters, setFilters] = useState<NoteFiltersType>({
     query: '',
@@ -50,6 +51,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
   }, [notes])
+
+  useEffect(() => {
+    // Auto-close mobile menu when filters change so user sees the result
+    setIsMobileMenuOpen(false)
+  }, [filters])
 
   const handleSaveNote = (input: NoteInput) => {
     if (editingNote) {
@@ -94,9 +100,12 @@ function App() {
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
       {/* Sidebar */}
-      <aside className="w-full md:w-64 lg:w-72 flex-shrink-0 border-b md:border-b-0 md:border-r border-slate-800 bg-slate-950/50 backdrop-blur-xl z-10 flex flex-col h-auto md:h-screen overflow-y-auto">
-        <Header />
-        <div className="px-5 py-6 flex-1 flex flex-col gap-8">
+      <aside className={`w-full md:w-64 lg:w-72 flex-shrink-0 border-b md:border-b-0 md:border-r border-slate-800 bg-slate-950/50 backdrop-blur-xl z-10 flex flex-col transition-all ${isMobileMenuOpen ? 'h-screen' : 'h-auto'} md:h-screen overflow-y-auto`}>
+        <Header 
+          isMobileMenuOpen={isMobileMenuOpen} 
+          onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+        />
+        <div className={`px-5 py-6 flex-1 flex-col gap-8 md:flex ${isMobileMenuOpen ? 'flex' : 'hidden'}`}>
           <HeroSummary
             summary={summary}
             totalCategories={categories.length}
