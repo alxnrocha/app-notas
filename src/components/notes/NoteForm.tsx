@@ -42,55 +42,55 @@ export function NoteForm({ initialData, onSave, onCancel }: NoteFormProps) {
     <form onSubmit={handleSubmit} className="grid gap-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label className="mb-2 block text-sm font-bold text-stone-950" htmlFor="title">
+          <label className="mb-2 block text-sm font-bold text-slate-300" htmlFor="title">
             Título
           </label>
           <input
-            className={`w-full rounded-xl border bg-stone-50 px-4 py-2.5 text-stone-950 placeholder:text-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 ${errors.title ? 'border-red-500' : 'border-stone-200'}`}
+            className={`w-full rounded-xl border bg-slate-800/50 px-4 py-2.5 text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 ${errors.title ? 'border-red-500' : 'border-slate-700'}`}
             id="title"
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Ej: Ideas para el portfolio"
             type="text"
             value={title}
           />
-          {errors.title && <p className="mt-1.5 text-sm font-semibold text-red-500">{errors.title}</p>}
+          {errors.title && <p className="mt-1.5 text-sm font-semibold text-red-400">{errors.title}</p>}
         </div>
 
         <div className="sm:col-span-2">
-          <label className="mb-2 block text-sm font-bold text-stone-950" htmlFor="content">
+          <label className="mb-2 block text-sm font-bold text-slate-300" htmlFor="content">
             Contenido
           </label>
           <textarea
-            className={`min-h-[120px] w-full resize-y rounded-xl border bg-stone-50 px-4 py-3 text-stone-950 placeholder:text-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 ${errors.content ? 'border-red-500' : 'border-stone-200'}`}
+            className={`min-h-[120px] w-full resize-y rounded-xl border bg-slate-800/50 px-4 py-3 text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 ${errors.content ? 'border-red-500' : 'border-slate-700'}`}
             id="content"
             onChange={(e) => setContent(e.target.value)}
             placeholder="Escribe tus notas aquí..."
             value={content}
           />
-          {errors.content && <p className="mt-1.5 text-sm font-semibold text-red-500">{errors.content}</p>}
+          {errors.content && <p className="mt-1.5 text-sm font-semibold text-red-400">{errors.content}</p>}
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-bold text-stone-950" htmlFor="category">
+          <label className="mb-2 block text-sm font-bold text-slate-300" htmlFor="category">
             Categoría
           </label>
           <input
-            className={`w-full rounded-xl border bg-stone-50 px-4 py-2.5 text-stone-950 placeholder:text-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 ${errors.category ? 'border-red-500' : 'border-stone-200'}`}
+            className={`w-full rounded-xl border bg-slate-800/50 px-4 py-2.5 text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 ${errors.category ? 'border-red-500' : 'border-slate-700'}`}
             id="category"
             onChange={(e) => setCategory(e.target.value)}
             placeholder="Ej: Trabajo, Personal"
             type="text"
             value={category}
           />
-          {errors.category && <p className="mt-1.5 text-sm font-semibold text-red-500">{errors.category}</p>}
+          {errors.category && <p className="mt-1.5 text-sm font-semibold text-red-400">{errors.category}</p>}
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-bold text-stone-950" htmlFor="tags">
-            Etiquetas <span className="font-normal text-stone-500">(separadas por coma)</span>
+          <label className="mb-2 block text-sm font-bold text-slate-300" htmlFor="tags">
+            Etiquetas <span className="font-normal text-slate-500">(separadas por coma)</span>
           </label>
           <input
-            className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-stone-950 placeholder:text-stone-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+            className="w-full rounded-xl border border-slate-700 bg-slate-800/50 px-4 py-2.5 text-white placeholder:text-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
             id="tags"
             onChange={(e) => setTagsInput(e.target.value)}
             placeholder="Ej: frontend, react, diseño"
@@ -102,7 +102,7 @@ export function NoteForm({ initialData, onSave, onCancel }: NoteFormProps) {
 
       <div className="flex items-center gap-3">
         <button
-          className={`inline-flex items-center justify-center rounded-xl border p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${isFavorite ? 'border-amber-200 bg-amber-100 text-amber-600' : 'border-stone-200 bg-stone-50 text-stone-400 hover:bg-stone-100'}`}
+          className={`inline-flex items-center justify-center rounded-xl border p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${isFavorite ? 'border-amber-500/50 bg-amber-500/10 text-amber-400' : 'border-slate-700 bg-slate-800/50 text-slate-500 hover:bg-slate-700'}`}
           onClick={() => setIsFavorite(!isFavorite)}
           type="button"
           aria-pressed={isFavorite}
@@ -110,21 +110,21 @@ export function NoteForm({ initialData, onSave, onCancel }: NoteFormProps) {
         >
           <Star className={isFavorite ? 'fill-current' : ''} size={20} />
         </button>
-        <span className="text-sm font-semibold text-stone-700">
+        <span className="text-sm font-semibold text-slate-300">
           Marcar como favorita
         </span>
       </div>
 
-      <div className="mt-4 flex items-center justify-end gap-3 border-t border-stone-100 pt-6">
+      <div className="mt-4 flex items-center justify-end gap-3 border-t border-slate-800 pt-6">
         <button
-          className="rounded-xl px-5 py-2.5 text-sm font-bold text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2"
+          className="rounded-xl px-5 py-2.5 text-sm font-bold text-slate-400 transition-colors hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 focus-visible:ring-offset-2"
           onClick={onCancel}
           type="button"
         >
           Cancelar
         </button>
         <button
-          className="rounded-xl bg-amber-400 px-6 py-2.5 text-sm font-bold text-amber-950 transition-colors hover:bg-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+          className="rounded-xl bg-indigo-500 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
           type="submit"
         >
           Guardar nota

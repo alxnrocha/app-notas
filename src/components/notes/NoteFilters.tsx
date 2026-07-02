@@ -1,19 +1,20 @@
-import { Filter, Search } from 'lucide-react'
+import { Archive, LayoutGrid, Star, Tag, Folder } from 'lucide-react'
 import type { NoteFilters as NoteFiltersType } from '../../types/note'
 
 type NoteFiltersProps = {
   filters: NoteFiltersType
   onFiltersChange: (filters: NoteFiltersType) => void
   categories: string[]
+  tags: string[]
 }
 
-export function NoteFilters({ filters, onFiltersChange, categories }: NoteFiltersProps) {
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onFiltersChange({ ...filters, query: e.target.value })
+export function NoteFilters({ filters, onFiltersChange, categories, tags }: NoteFiltersProps) {
+  const handleCategoryChange = (category: string) => {
+    onFiltersChange({ ...filters, category })
   }
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onFiltersChange({ ...filters, category: e.target.value })
+  const handleTagChange = (tag: string) => {
+    onFiltersChange({ ...filters, tag })
   }
 
   const handleStatusToggle = (status: 'all' | 'active' | 'archived') => {
@@ -28,101 +29,138 @@ export function NoteFilters({ filters, onFiltersChange, categories }: NoteFilter
   }
 
   return (
-    <section className="mb-8 flex flex-col gap-4">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
-            <Filter size={20} strokeWidth={2.25} />
-          </div>
-          <div>
-            <h2 className="font-bold text-stone-950">Explorar notas</h2>
-            <p className="text-sm font-medium text-stone-500">
-              Encuentra tus apuntes rapidamente
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-4 rounded-xl border border-stone-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center">
-        {/* Search */}
-        <div className="relative flex-1">
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <Search className="h-5 w-5 text-stone-400" />
-          </div>
-          <input
-            type="text"
-            placeholder="Buscar por titulo, contenido o etiquetas..."
-            className="block w-full rounded-lg border-stone-300 pl-10 focus:border-stone-500 focus:ring-stone-500 sm:text-sm"
-            value={filters.query}
-            onChange={handleQueryChange}
-          />
-        </div>
-
-        {/* Category Dropdown */}
-        <div className="sm:w-48">
-          <select
-            className="block w-full rounded-lg border-stone-300 text-sm focus:border-stone-500 focus:ring-stone-500"
-            value={filters.category}
-            onChange={handleCategoryChange}
-          >
-            <option value="all">Todas las categorias</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Chips Filters */}
-      <div className="flex flex-wrap items-center gap-2">
+    <nav className="flex flex-col gap-8">
+      {/* Main Views */}
+      <div className="flex flex-col gap-1">
         <button
-          type="button"
-          onClick={() => handleStatusToggle('all')}
-          className={`rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 ${
-            filters.status === 'all'
-              ? 'bg-stone-800 text-white'
-              : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+          onClick={() => {
+            handleStatusToggle('all')
+            if (filters.favorite !== 'all') handleFavoriteToggle()
+          }}
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+            filters.status === 'all' && filters.favorite === 'all'
+              ? 'bg-indigo-500/10 text-indigo-400'
+              : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
           }`}
         >
-          Todas
+          <LayoutGrid size={18} />
+          Dashboard
         </button>
+        
         <button
-          type="button"
-          onClick={() => handleStatusToggle('active')}
-          className={`rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 ${
-            filters.status === 'active'
-              ? 'bg-stone-800 text-white'
-              : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+          onClick={() => {
+            handleStatusToggle('active')
+            if (filters.favorite !== 'all') handleFavoriteToggle()
+          }}
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+            filters.status === 'active' && filters.favorite === 'all'
+              ? 'bg-indigo-500/10 text-indigo-400'
+              : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
           }`}
         >
-          Activas
+          <Folder size={18} />
+          Active Notes
         </button>
+
         <button
-          type="button"
-          onClick={() => handleStatusToggle('archived')}
-          className={`rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2 ${
-            filters.status === 'archived'
-              ? 'bg-stone-800 text-white'
-              : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-          }`}
-        >
-          Archivadas
-        </button>
-        <div className="h-4 w-px bg-stone-300"></div>
-        <button
-          type="button"
-          onClick={handleFavoriteToggle}
-          className={`flex items-center gap-1.5 rounded-full px-4 py-2 sm:py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 ${
+          onClick={() => {
+            handleFavoriteToggle()
+          }}
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
             filters.favorite === 'favorites'
-              ? 'bg-amber-100 text-amber-800'
-              : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+              ? 'bg-amber-500/10 text-amber-400'
+              : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
           }`}
         >
-          <span>⭐</span> Favoritas
+          <Star size={18} />
+          Favorites
+        </button>
+
+        <button
+          onClick={() => {
+            handleStatusToggle('archived')
+            if (filters.favorite !== 'all') handleFavoriteToggle()
+          }}
+          className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+            filters.status === 'archived' && filters.favorite === 'all'
+              ? 'bg-indigo-500/10 text-indigo-400'
+              : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
+          }`}
+        >
+          <Archive size={18} />
+          Archived
         </button>
       </div>
-    </section>
+
+      {/* Categories */}
+      {categories.length > 0 && (
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 px-3">
+            Categories
+          </h3>
+          <div className="flex flex-col gap-1">
+            <button
+              onClick={() => handleCategoryChange('all')}
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                filters.category === 'all'
+                  ? 'text-indigo-400 font-medium'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              All Categories
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => handleCategoryChange(cat)}
+                className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors text-left ${
+                  filters.category === cat
+                    ? 'text-indigo-400 font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tags */}
+      {tags.length > 0 && (
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 px-3">
+            Tags
+          </h3>
+          <div className="flex flex-col gap-1">
+            <button
+              onClick={() => handleTagChange('all')}
+              className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                filters.tag === 'all'
+                  ? 'text-indigo-400 font-medium'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Tag size={14} />
+              All Tags
+            </button>
+            {tags.map((t) => (
+              <button
+                key={t}
+                onClick={() => handleTagChange(t)}
+                className={`flex items-center gap-3 px-3 py-1.5 rounded-lg text-sm transition-colors text-left ${
+                  filters.tag === t
+                    ? 'text-indigo-400 font-medium'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <Tag size={14} />
+                {t}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
   )
 }
