@@ -37,9 +37,9 @@ export function NoteCard({
   const bgClass = getCategoryColor(note.category)
 
   return (
-    <article className={`group flex flex-col justify-between h-[360px] rounded-3xl ${bgClass} p-6 shadow-md transition-all hover:shadow-lg hover:-translate-y-1 text-white`}>
+    <article className={`group flex flex-col justify-between h-[260px] rounded-3xl ${bgClass} p-5 shadow-md transition-all hover:shadow-lg hover:-translate-y-1 text-white`}>
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5">
           <p className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white backdrop-blur-sm">
             {note.category}
           </p>
@@ -54,9 +54,9 @@ export function NoteCard({
             </p>
           )}
         </div>
-        <h3 className="mt-4 text-2xl font-bold tracking-tight text-white drop-shadow-sm line-clamp-2">{note.title}</h3>
-        <div className="mt-3 flex-1 overflow-hidden">
-          <p className="text-sm leading-relaxed text-white/90 line-clamp-3">
+        <h3 className="mt-3 text-xl font-bold tracking-tight text-white drop-shadow-sm line-clamp-1">{note.title}</h3>
+        <div className="mt-1.5 flex-1 overflow-hidden">
+          <p className="text-sm leading-snug text-white/90 line-clamp-2">
             {note.content}
           </p>
           {(note.content.length > 100 || note.tags.length > 3) && (
@@ -65,10 +65,10 @@ export function NoteCard({
             </span>
           )}
         </div>
-        <div className="mt-4 flex flex-wrap gap-2 overflow-hidden h-[28px]">
+        <div className="mt-2 flex flex-wrap gap-1.5 overflow-hidden h-[24px]">
           {note.tags.map((tag) => (
             <span
-              className="rounded-full bg-black/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm whitespace-nowrap"
+              className="rounded-full bg-black/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm whitespace-nowrap"
               key={tag}
             >
               #{tag}
@@ -77,7 +77,7 @@ export function NoteCard({
         </div>
       </div>
 
-      <div className="mt-6 flex flex-shrink-0 items-center justify-end gap-2 border-t border-white/20 pt-4 opacity-100 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
+      <div className="mt-4 flex flex-shrink-0 items-center justify-end gap-1.5 border-t border-white/20 pt-3 opacity-100 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
         <button
           aria-label="Editar"
           className="flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl text-white/70 transition-colors cursor-pointer hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"

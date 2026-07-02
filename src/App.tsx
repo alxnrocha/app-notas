@@ -113,7 +113,7 @@ function App() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-y-auto z-10" id="inicio">
-        <div className="flex-1 px-5 py-8 sm:px-8 lg:px-12 w-full max-w-7xl mx-auto">
+        <div className="flex-1 px-5 py-8 sm:px-8 lg:px-12 w-full max-w-[1600px] mx-auto">
           <div id="notas">
             <NoteFormPanel
               editingNote={editingNote}
