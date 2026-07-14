@@ -1,7 +1,6 @@
 import { Archive, ArchiveRestore, Pencil, Star, Trash2 } from 'lucide-react'
 import type { Note } from '../../types/note'
 
-// Vibrant backgrounds mapping based on category hash
 const bgColors = [
   'bg-gradient-to-br from-pink-500 to-rose-400',
   'bg-gradient-to-br from-violet-500 to-purple-400',
