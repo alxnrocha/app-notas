@@ -37,9 +37,6 @@
 │   ├── README.md
 │   ├── schema.sql
 │   └── seed.sql
-├── screenshots/                   # Capturas de pantalla reales
-│   ├── desktop.png
-│   └── mobile.png
 ├── src/
 │   ├── components/                # Layout, Sidebar, NoteCard y Modal de creación
 │   ├── data/                      # Notas iniciales de demostración
