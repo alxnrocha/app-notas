@@ -1,109 +1,97 @@
-# Noteflow: Premium Notes Workspace
+# NoteFlow — Workspace de Notas & Productividad Personal
 
-Aplicación web moderna y responsiva para gestionar notas locales, con un diseño premium (Dark Mode Masonry) y un modelado relacional completo en SQL.
+[![CI & Deploy](https://github.com/alxnrocha/app-notas/actions/workflows/ci.yml/badge.svg)](https://github.com/alxnrocha/app-notas/actions)
+[![Demo GitHub Pages](https://img.shields.io/badge/Demo-GitHub_Pages-22c55e?style=for-the-badge&logo=github&logoColor=white)](https://alxnrocha.github.io/app-notas/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19.2-61dafb.svg)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38bdf8.svg)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-Diseñé y desarrollé este proyecto para simular un producto SaaS de productividad real. El objetivo fue construir una experiencia orientada a la eficiencia y el diseño de alta fidelidad, cuidando tanto la interfaz (UI/UX) como la estructura técnica de datos subyacente.
+**NoteFlow** es una aplicación web SaaS de productividad diseñada para la captura ágil, organización visual y etiquetado de notas personales y profesionales. Cuenta con interfaz Dark Mode Masonry, búsqueda reactiva instantánea, filtros multicriterio, persistencia local y diseño relacional SQL adjunto.
 
-## Vista General
+- 🌐 **Demo en Vivo (GitHub Pages):** [https://alxnrocha.github.io/app-notas/](https://alxnrocha.github.io/app-notas/)
+- 📦 **Repositorio GitHub:** [https://github.com/alxnrocha/app-notas](https://github.com/alxnrocha/app-notas)
 
-Noteflow presenta un panel central de notas organizado en un layout dinámico tipo Masonry, acompañado de una barra lateral para filtros rápidos (categorías, etiquetas, favoritos). La aplicación está pensada para ser rápida, visualmente atractiva (glassmorphism, gradientes autogenerados) y completamente funcional a nivel de frontend, persistiendo los datos de manera local.
+---
 
-## Funcionalidades
+## 📸 Vistas Reales del Sistema
 
-- Interfaz premium en Dark Mode con efectos ambientales de luz.
-- Panel lateral interactivo con filtros por estado (Active/Archived) y favoritos.
-- Layout dinámico de cuadrícula (CSS Grid Masonry style) para las tarjetas de notas.
-- Buscador en tiempo real integrado en la barra de navegación superior.
-- Categorización automática con colores de gradiente generados por hash.
-- Gestión completa de notas: creación, edición, archivado y eliminación.
-- Múltiples etiquetas (`#tags`) por nota.
-- Persistencia automática de datos usando `localStorage`.
-- Diseño responsive para desktop, tablet y móvil.
+### 1. Vista Principal (Desktop)
 
-## Tecnologías
+![Vista desktop de NoteFlow](./screenshots/desktop.png)
 
-- React 19
-- TypeScript
-- Tailwind CSS 4.0
-- Lucide React (Iconos)
-- Vite
-- Git & GitHub
+### 2. Experiencia Responsive (Móvil)
 
-## Decisiones de Implementación
+![Vista mobile de NoteFlow](./screenshots/mobile.png)
 
-El proyecto está construido utilizando React para aprovechar la reactividad del estado de UI al manipular las listas y filtros de notas. Elegí Tailwind CSS para implementar rápidamente los tokens de diseño avanzado (como `backdrop-blur`, gradientes personalizados y tipografía utilitaria) sin abandonar el archivo de componentes.
+---
 
-A diferencia de una SPA estándar, se ha implementado la persistencia de datos local (`localStorage`) mediante un `useEffect` sincronizado con el estado principal de React, simulando el comportamiento de un backend real.
+## ✨ Características Principales
 
-Adicionalmente, he diseñado la capa de base de datos relacional (SQL) que este frontend consumiría en un entorno de producción, demostrando así visión full-stack. El esquema SQL está separado en la carpeta `database/`.
+### 🚀 Experiencia de Usuario & Frontend
+- **Layout Dinámico Masonry:** Disposición automática de tarjetas de notas según longitud de contenido con efectos de iluminación ambiental y glassmorphism.
+- **Búsqueda Reactiva & Filtrado por Etiquetas:** Filtrado en tiempo real por texto, estado (`Activas`, `Archivadas`), favoritos y múltiples etiquetas (`#tags`).
+- **Gestión de Ciclo de Vida de Notas:** Creación modal, edición directa, marcado como favorita, archivado y eliminación con confirmación.
+- **Gradientes Hash Automatizados:** Generación determinista de paletas cromáticas por categoría para facilitar la memorización visual.
+- **Persistencia en LocalStorage:** Sincronización automática de estado y persistencia sin backend requerido.
 
-## Accesibilidad
+### 🛡️ Diseño de Datos Relacional (SQL)
+- Modelado relacional complementario documentado en [`database/README.md`](./database/README.md) con esquemas DDL (`schema.sql`) y datos de prueba (`seed.sql`).
 
-Implementé varias mejoras básicas de accesibilidad adaptadas a una SPA interactiva:
+---
 
-- Navegación lateral con contrastes controlados (AA).
-- Uso de `aria-label` en botones sin texto explícito (íconos de acción en las tarjetas).
-- Estructura semántica con `<aside>`, `<header>`, `<main>` y `<article>` para las notas.
-- Focos visibles en los botones interactivos (hover y focus states en tarjetas).
-- Estados interactivos transparentes para reducir carga cognitiva.
+## 🏛️ Estructura del Proyecto
 
-## Estructura
-
-```txt
+```text
 06-app-notas/
-├── README.md
-├── index.html
-├── database/
+├── .github/workflows/ci.yml       # Pipeline de CI y Deploy automático en Pages
+├── database/                      # Modelado SQL relacional
+│   ├── README.md
 │   ├── schema.sql
-│   ├── seed.sql
-│   └── README.md
-├── screenshots/
+│   └── seed.sql
+├── screenshots/                   # Capturas de pantalla reales
 │   ├── desktop.png
 │   └── mobile.png
-└── src/
-    ├── components/
-    ├── data/
-    ├── types/
-    ├── utils/
-    ├── App.tsx
-    └── main.tsx
+├── src/
+│   ├── components/                # Layout, Sidebar, NoteCard y Modal de creación
+│   ├── data/                      # Notas iniciales de demostración
+│   ├── types/                     # Definiciones de tipos TypeScript
+│   ├── utils/                     # Utilidades de color hash y formateo
+│   ├── App.tsx                    # Shell principal de la aplicación
+│   └── main.tsx                   # Entrada React 19
+├── index.html                     # Entrypoint HTML5
+└── vite.config.ts                 # Configuración de Vite y Tailwind v4
 ```
 
-## Cómo Ejecutarlo
+---
 
-Opción recomendada para entorno de desarrollo:
+## ⚡ Guía de Inicio Rápido
 
-1. Clonar el repositorio.
-2. Abrir la carpeta del proyecto en la terminal.
-3. Instalar las dependencias con `npm install`.
-4. Ejecutar el servidor de desarrollo con `npm run dev`.
+### 1. Clonar e Instalar Dependencias
+```bash
+git clone https://github.com/alxnrocha/app-notas.git
+cd app-notas
+npm install
+```
 
-## Screenshots
+### 2. Iniciar en Modo Desarrollo
+```bash
+npm run dev
+```
 
-### Desktop
+---
 
-![Vista desktop de Noteflow](./screenshots/desktop.png?v=20260702-fixed)
+## 🧪 Calidad de Código y Pruebas
 
-### Mobile
+```bash
+# Compilar para producción
+npm run build
+```
 
-![Vista mobile de Noteflow](./screenshots/mobile.png?v=20260702-fixed)
+---
 
-## Deploy
+## 📄 Licencia
 
-Proyecto configurado para publicación automática vía GitHub Actions:
+Este proyecto está bajo la Licencia MIT. Consulte el archivo [LICENSE](./LICENSE) para más detalles.
 
-[https://alxnrocha.github.io/app-notas/](https://alxnrocha.github.io/app-notas/)
-
-## Documentación Técnica
-
-El detalle del modelado de base de datos SQL relacional (Diseño backend conceptual) está documentado en:
-
-[database/README.md](./database/README.md)
-
-## Estado
-
-Aplicación de notas finalizada y publicada como proyecto de portfolio de nivel intermediario-avanzado.
-
-## Autor
-
-Alexandre Rocha
+**Autor:** [Alexandre Rocha](https://github.com/alxnrocha)
