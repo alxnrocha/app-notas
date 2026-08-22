@@ -1,3 +1,4 @@
+import { ProjectBadge } from './components/ProjectBadge';
 import { useEffect, useState } from 'react'
 import { Header } from './components/layout/Header'
 import { HeroSummary } from './components/layout/HeroSummary'
@@ -145,6 +146,7 @@ function App() {
           </div>
         </div>
       </main>
+          <ProjectBadge />
     </div>
   )
 }
